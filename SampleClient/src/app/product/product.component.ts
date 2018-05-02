@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Product } from '../product';
 
 @Component({
   selector: 'app-product',
@@ -7,13 +8,19 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ProductComponent implements OnInit {
 
+  @Output() deleteProduct: EventEmitter<Product>; 
 
-
-  constructor() { }
+  constructor() { 
+    this.deleteProduct = new EventEmitter();
+  }
 
   ngOnInit() {
   }
 
-  @Input() product: string;
+  @Input() product: Product;
+
+  deleteClickHandler(){
+    this.deleteProduct.emit(this.product);
+  }
 
 }

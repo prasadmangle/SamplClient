@@ -1,5 +1,11 @@
 <div class="row">
     <div class="col-sm-3" *ngFor="let p of products">
-      <app-product [product]="p"></app-product>
+      <app-product [product]="p" (deleteProduct)='removeProduct($event)'></app-product>
+    </div>
+    <div>
+      <form (submit)='addProduct'>
+      <input type="text" [(ngModel)]="name" name="name"/>
+      <button type="submit" (click)="addProduct()">Add Product</button>
+    </form>
     </div>
   </div>
