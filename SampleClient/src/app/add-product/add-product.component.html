@@ -1,0 +1,9 @@
+<div class="addProduct">
+  <form (submit)='addProduct'>
+    <label>Product Name:</label>
+    <input type="text" [(ngModel)]="name" name="name" (keydown.enter)="submit()" />
+    <br/><br/>
+    <button type="submit" (click)="addProduct()">Add Product</button>
+    <br/><br/>
+  </form>
+</div>

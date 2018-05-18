@@ -1,3 +1,18 @@
-<p>{{product.name}}</p>
-<img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-<button (click)="deleteClickHandler()">Delete</button>
+<div class="product-cell">
+    <a [routerLink]="['/product', product._id]">{{product.name}}</a>
+    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+    <!--<div *ngFor="let c of product.comments">
+        <span>{{c.body}} ({{c.date}})</span>
+        <span>
+            <button (click)="removeCommentHandler(c)">Remove</button>
+        </span>
+    </div>
+    <form (submit)='addComment'>
+        <input type="text" [(ngModel)]="comment" name="comment" (keydown.enter)="submit()"/>
+        <button type="submit" (click)="addComment()">Add Comment</button>
+    </form>-->
+    <br/>
+    <app-star-rating [score]="this.starsCount" [forDisplay]="true"></app-star-rating>
+    <br/>
+    <button (click)="deleteClickHandler()">Delete</button>
+</div>

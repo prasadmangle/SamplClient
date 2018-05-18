@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductService} from '../product.service';
 import {Product} from '../product';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-productlist',
@@ -32,6 +33,8 @@ export class ProductlistComponent implements OnInit {
     .subscribe(product=>{
       this.products.push(product);
     });
+
+    this.name = '';
   }
 
   removeProduct(product){

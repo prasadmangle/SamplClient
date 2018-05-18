@@ -1,0 +1,26 @@
+<div class="product-details">
+  <div class="product-form">
+    <form (submit)='updateProduct()'>
+      <label>Name:</label>
+      <input type="text" [(ngModel)]="product.name" name="name" />
+      <br/>
+      <button type="submit">Update Product</button>
+      <span>
+        <button (click)="redirectToHome()">Back</button>
+      </span>
+    </form>
+  </div>
+  <br/>
+  <div class="comments-section">
+    <div *ngFor="let c of product.comments">
+      <span>{{c.body}} ({{c.date}})</span>
+      <span>
+          <span class="glyphicon glyphicon-remove-circle" (click)="removeCommentHandler(c)"></span>
+      </span>
+    </div>
+    <form (submit)='addComment'>
+      <input type="text" [(ngModel)]="comment" name="comment" (keydown.enter)="submit()" />
+      <button type="submit" (click)="addComment()">Add Comment</button>
+    </form>
+  </div>
+</div>
