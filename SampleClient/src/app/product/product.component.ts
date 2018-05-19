@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../product';
 import {ProductService} from '../product.service';
+import { AdminGuard } from '../admin.guard';
 
 @Component({
   selector: 'app-product',
@@ -16,7 +17,7 @@ export class ProductComponent implements OnInit {
 
   @Output() deleteProduct: EventEmitter<Product>;
 
-  constructor(private productService: ProductService) { 
+  constructor(private productService: ProductService, private adminGuard : AdminGuard) { 
     this.deleteProduct = new EventEmitter();
   }
 

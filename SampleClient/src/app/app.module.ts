@@ -21,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { LoggedInGuard } from './logged-in.guard';
 import { AUTH_PROVIDERS } from './auth.service';
 import { UserService } from './user.service';
+import { AdminGuard } from './admin.guard';
 
 
 const routes: Routes = [
@@ -37,7 +38,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate: [LoggedInGuard]
+    canActivate: [LoggedInGuard, AdminGuard]
   },
 ];
 
@@ -71,6 +72,7 @@ const routes: Routes = [
     ProductService,
     AUTH_PROVIDERS,
     LoggedInGuard,
+    AdminGuard,
     UserService
   ],
   bootstrap: [AppComponent]

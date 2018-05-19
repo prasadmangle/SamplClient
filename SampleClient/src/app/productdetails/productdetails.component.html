@@ -1,5 +1,5 @@
 <div class="product-details">
-  <div class="product-form">
+  <div class="product-form-edit" *ngIf="adminGuard.canActivate()">
     <form (submit)='updateProduct()'>
       <label>Name:</label>
       <input type="text" [(ngModel)]="product.name" name="name" />
@@ -10,16 +10,25 @@
       </span>
     </form>
   </div>
+  <div class="product-form-readonly" *ngIf="!adminGuard.canActivate()">
+    <label>Name:</label>
+    <div>{{product.name}}</div>
+    <br/>
+    <span>
+        <button (click)="redirectToHome()">Back</button>
+      </span>
+  </div>
+
   <br/>
   <div class="comments-section">
     <div *ngFor="let c of product.comments">
       <span>{{c.body}} ({{c.date}})</span>
       <span>
-          <span class="glyphicon glyphicon-remove-circle" (click)="removeCommentHandler(c)"></span>
+        <span class="glyphicon glyphicon-remove-circle" (click)="removeCommentHandler(c)"></span>
       </span>
     </div>
-    <form (submit)='addComment'>
-      <input type="text" [(ngModel)]="comment" name="comment" (keydown.enter)="submit()" />
+    <form (submit)='addComment()'>
+      <input type="text" [(ngModel)]="comment" name="comment" (keydown.enter)="addComment()" />
       <button type="submit" (click)="addComment()">Add Comment</button>
     </form>
   </div>

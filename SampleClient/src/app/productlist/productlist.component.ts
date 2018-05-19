@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProductService} from '../product.service';
 import {Product} from '../product';
 import { Router } from '@angular/router';
+import { Input } from '@angular/core/src/metadata/directives';
 
 @Component({
   selector: 'app-productlist',
@@ -17,7 +18,7 @@ export class ProductlistComponent implements OnInit {
    //products: string[] = ["P1","P2","P3","P4","P5"  ];
    products : Product[];
    name:string;
-  
+
   constructor(private productService: ProductService) { }
 
   ngOnInit() {

@@ -14,5 +14,5 @@
     <br/>
     <app-star-rating [score]="this.starsCount" [forDisplay]="true"></app-star-rating>
     <br/>
-    <button (click)="deleteClickHandler()">Delete</button>
+    <div *ngIf="adminGuard.canActivate()"><button (click)="deleteClickHandler()">Delete</button></div>   
 </div>
