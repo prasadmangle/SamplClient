@@ -14,8 +14,14 @@
     <label for="email">Email: </label>
     <input class="form-control" type="email" name="email" #email>
   </div>
-
-  <a class="btn btn-default" (click)="register(username.value, password.value, email.value)">
+  <br/>
+  <div class="form-group">
+    <label for="role">Role: </label>
+    <input type="radio" value="user" name="role" #role> User
+    <input type="radio" value="admin" name="role" #role> Admin
+  </div>
+  <br/>
+  <a class="btn btn-success" (click)="register(username.value, password.value, email.value, role.value)">
     Submit
   </a>
 </form>

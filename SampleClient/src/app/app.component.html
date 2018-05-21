@@ -41,8 +41,8 @@
       <ul class="nav navbar-nav navbar-right">
         <li *ngIf="!authService.getUser()"><a routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         <li *ngIf="!authService.getUser()"><a routerLink="/register"><span class="glyphicon glyphicon-user"></span> Register</a></li>
-        <li *ngIf="authService.getUser()"> <a>Welcome <b>{{ authService.getUser() }}</b></a></li>
-        <li *ngIf="authService.getUser()"><a href (click)="logout()">Log out</a>
+        <li *ngIf="authService.getUser()"> <a><span class="glyphicon glyphicon-user"></span> Welcome <b>{{ authService.getUser() }}</b></a></li>
+        <li *ngIf="authService.getUser()"><a href (click)="logout()">Log out <span class="glyphicon glyphicon-log-out"></span></a>
         </li>
       </ul>
     </div>

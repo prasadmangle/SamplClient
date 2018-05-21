@@ -20,19 +20,19 @@ export class LoginComponent implements OnInit {
 
   login(email: string, password: string): boolean {
     this.message = '';
-    if (!this.authService.login(email, password)) {
+    if (this.authService.login(email, password)) {
       this.message = 'Incorrect credentials.';
 
       setTimeout(function () {
         this.message = '';
       }.bind(this), 2500);
     }
-    else{
+    else {
       this.router.navigate(['/']);
     }
     return false;
   }
 
-  
+
 
 }

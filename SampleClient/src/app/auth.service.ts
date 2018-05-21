@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
 import { User } from './user';
+import { Observable } from 'rxjs';
+
 
 @Injectable()
 export class AuthService {
@@ -19,21 +21,22 @@ export class AuthService {
         localStorage.setItem('username', email);
         localStorage.setItem('usertoken', "bearer " + tokenObject.token);
         localStorage.setItem('userrole', tokenObject.role);
-        return true;
-      }
-      else {
-        return false;
+
       }
     },
       err => {
         console.log(err);
-        return false;
       })
-    return false;
+
+    return (localStorage.getItem('usertoken') == null);
+
+
   }
 
   logout(): any {
     localStorage.removeItem('username');
+    localStorage.removeItem('userrole');
+    localStorage.removeItem('usertoken');
   }
 
   getUser(): any {

@@ -22,6 +22,7 @@ import { LoggedInGuard } from './logged-in.guard';
 import { AUTH_PROVIDERS } from './auth.service';
 import { UserService } from './user.service';
 import { AdminGuard } from './admin.guard';
+import {TimeAgoPipe} from 'time-ago-pipe';
 
 
 const routes: Routes = [
@@ -55,7 +56,8 @@ const routes: Routes = [
     AddProductComponent,
     StarRatingComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    TimeAgoPipe
   ],
   imports: [
     BrowserModule,

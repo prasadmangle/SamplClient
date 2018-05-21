@@ -16,11 +16,12 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  register(username: string, password: string, email : string) {
+  register(username: string, password: string, email : string, role: string) {
     var user = new User();
     user.name = username;
     user.email = email;
     user.password = password;
+    user.role = role;
 
     this.userService.registerUser(user).subscribe((user) => {
       console.log(user);

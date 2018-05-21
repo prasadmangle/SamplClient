@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../product.service';
 import { Product } from '../product';
 import { AdminGuard } from '../admin.guard';
+import { LoggedInGuard } from '../logged-in.guard';
 
 @Component({
   selector: 'app-productdetails',
@@ -17,8 +18,9 @@ export class ProductdetailsComponent implements OnInit {
   comment: string;
   starsCount: number;
 
-  constructor(private route: ActivatedRoute, private productService: ProductService, 
-    private router: Router, private adminGuard: AdminGuard) {
+  constructor(private route: ActivatedRoute, private productService: ProductService,
+    private router: Router, private adminGuard: AdminGuard,
+    private loggedInGuard: LoggedInGuard) {
     route.params.subscribe(params => { this.id = params['id']; });
   }
 
@@ -58,7 +60,7 @@ export class ProductdetailsComponent implements OnInit {
 
   }
 
-  redirectToHome(){
+  redirectToHome() {
     this.router.navigate(['/']);
   }
 }

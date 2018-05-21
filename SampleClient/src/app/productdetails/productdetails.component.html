@@ -21,13 +21,14 @@
 
   <br/>
   <div class="comments-section">
+    <p><b>Comments: ({{product.comments.length}})</b></p>
     <div *ngFor="let c of product.comments">
-      <span>{{c.body}} ({{c.date}})</span>
+      <span>{{c.body}} ({{c.date| timeAgo}})</span>
       <span>
-        <span class="glyphicon glyphicon-remove-circle" (click)="removeCommentHandler(c)"></span>
+        <span class="glyphicon glyphicon-remove-circle" (click)="removeCommentHandler(c)" *ngIf="loggedInGuard.canActivate()"></span>
       </span>
     </div>
-    <form (submit)='addComment()'>
+    <form *ngIf="loggedInGuard.canActivate()">
       <input type="text" [(ngModel)]="comment" name="comment" (keydown.enter)="addComment()" />
       <button type="submit" (click)="addComment()">Add Comment</button>
     </form>
