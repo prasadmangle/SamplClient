@@ -6,6 +6,7 @@ import { AdminGuard } from '../admin.guard';
 import { LoggedInGuard } from '../logged-in.guard';
 import { FormControl } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-productdetails',
@@ -18,7 +19,7 @@ export class ProductdetailsComponent implements OnInit {
   product: Product = new Product();
 
   comment: string;
-  starsCount: number;
+  starsCount: number = 0;
 
   ctrl = new FormControl(null);
 
@@ -30,7 +31,15 @@ export class ProductdetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productService.getOneProduct(this.id).subscribe(p => this.product = p);
+    this.productService.getOneProduct(this.id).subscribe(p => {
+      this.product = p
+      if (this.product != null) {
+        if (this.product.starRatings != null) {
+          this.starsCount = this.product.starRatings.filter(x => x.userEmail === this.authService.getUser())[0].rating;
+        }
+      }
+    }
+    );
     console.log(JSON.stringify(this.product));
   }
   rateClickHandler() {
