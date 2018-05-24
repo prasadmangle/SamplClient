@@ -4,6 +4,8 @@ import { ProductService } from '../product.service';
 import { Product } from '../product';
 import { AdminGuard } from '../admin.guard';
 import { LoggedInGuard } from '../logged-in.guard';
+import { FormControl } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-productdetails',
@@ -18,15 +20,27 @@ export class ProductdetailsComponent implements OnInit {
   comment: string;
   starsCount: number;
 
+  ctrl = new FormControl(null);
+
   constructor(private route: ActivatedRoute, private productService: ProductService,
     private router: Router, private adminGuard: AdminGuard,
-    private loggedInGuard: LoggedInGuard) {
+    private loggedInGuard: LoggedInGuard,
+    private authService: AuthService) {
     route.params.subscribe(params => { this.id = params['id']; });
   }
 
   ngOnInit() {
     this.productService.getOneProduct(this.id).subscribe(p => this.product = p);
-    console.log(this.product);
+    console.log(JSON.stringify(this.product));
+  }
+  rateClickHandler() {
+
+    if (this.ctrl.value != null) {
+      this.productService.addRating(this.product, this.authService.getUser(), this.ctrl.value).subscribe(p => {
+        console.log("Rating successfull!!!");
+      });
+    }
+
   }
 
   updateProduct() {

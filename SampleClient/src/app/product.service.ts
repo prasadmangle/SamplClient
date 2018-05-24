@@ -28,11 +28,11 @@ export class ProductService {
       .map(res => res.json());
   }
 
-  updateOneProduct(product : Product){
+  updateOneProduct(product: Product) {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    return this.http.patch('http://localhost:3000/api/products/'+product._id, product, { headers: headers })
+    return this.http.patch('http://localhost:3000/api/products/' + product._id, product, { headers: headers })
       .map(res => res.json());
   }
 
@@ -49,6 +49,22 @@ export class ProductService {
     console.log(product);
 
     return this.http.post('http://localhost:3000/api/comments/' + comment, product, { headers: headers })
+      .map(res => res.json());
+  }
+
+  addRating(product, userEmail, starratings) {
+    if (starratings === null)
+      return;
+    console.log(starratings);
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    const request = {
+      "_id": product._id,
+      "userEmail": userEmail
+    }
+
+    return this.http.post('http://localhost:3000/api/starratings/' + starratings, request, { headers: headers })
       .map(res => res.json());
   }
 

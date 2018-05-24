@@ -22,7 +22,8 @@ import { LoggedInGuard } from './logged-in.guard';
 import { AUTH_PROVIDERS } from './auth.service';
 import { UserService } from './user.service';
 import { AdminGuard } from './admin.guard';
-import {TimeAgoPipe} from 'time-ago-pipe';
+import { TimeAgoPipe } from 'time-ago-pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 const routes: Routes = [
@@ -65,6 +66,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     StarRatingModule.forRoot(),
+    NgbModule.forRoot(),
     RouterModule.forRoot(routes)
 
   ],

@@ -8,6 +8,7 @@
       <span>
         <button (click)="redirectToHome()">Back</button>
       </span>
+      <button (click)="deleteClickHandler()">Delete Product</button>
     </form>
   </div>
   <div class="product-form-readonly" *ngIf="!adminGuard.canActivate()">
@@ -15,13 +16,22 @@
     <div>{{product.name}}</div>
     <br/>
     <span>
-        <button (click)="redirectToHome()">Back</button>
-      </span>
+      <button (click)="redirectToHome()">Back</button>
+    </span>
+  </div>
+  <br/>
+  <div class="ratings-section">
+    <p>
+      <b>Ratings:</b>
+    </p>
+    <ngb-rating [rate]="product.starsCount" [readonly]="false" [formControl]="ctrl" (rateChange)="rateClickHandler()"></ngb-rating>
   </div>
 
   <br/>
   <div class="comments-section">
-    <p><b>Comments: ({{product.comments.length}})</b></p>
+    <p>
+      <b>Comments: </b>
+    </p>
     <div *ngFor="let c of product.comments">
       <span>{{c.body}} ({{c.date| timeAgo}})</span>
       <span>

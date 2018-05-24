@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../product';
-import {ProductService} from '../product.service';
+import { ProductService } from '../product.service';
 import { AdminGuard } from '../admin.guard';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -12,17 +13,17 @@ export class ProductComponent implements OnInit {
 
   comment: string;
   starsCount: number;
-  displayRatingScore = 5;
+
 
 
   @Output() deleteProduct: EventEmitter<Product>;
 
-  constructor(private productService: ProductService, private adminGuard : AdminGuard) { 
+  constructor(private productService: ProductService, private adminGuard: AdminGuard, private router: Router) {
     this.deleteProduct = new EventEmitter();
   }
 
   ngOnInit() {
-    this.starsCount = 4;
+
   }
 
   @Input() product: Product;
@@ -33,10 +34,10 @@ export class ProductComponent implements OnInit {
 
   removeCommentHandler(comment) {
     console.log(comment);
-    var res = this.productService.removeComment(this.product,comment)
-    .subscribe(product => {
-      this.product = product;
-    });
+    var res = this.productService.removeComment(this.product, comment)
+      .subscribe(product => {
+        this.product = product;
+      });
     console.log(res);
   }
 
@@ -50,5 +51,9 @@ export class ProductComponent implements OnInit {
       });
 
   }
+  NavigateToDetails() {
+    this.router.navigate(['/product', this.product._id]);
+  }
+
 
 }

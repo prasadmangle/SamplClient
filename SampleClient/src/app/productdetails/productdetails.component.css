@@ -1,8 +1,11 @@
 .product-details{
-    
+    padding: 20px;
+    text-align: center;
 }
 
 .comments-section{
     padding: 10px;
+    border: 1px;
+    border-color: black;
     
 }

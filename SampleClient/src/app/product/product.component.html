@@ -1,5 +1,6 @@
-<div class="product-cell">
-    <a [routerLink]="['/product', product._id]">{{product.name}}</a>
+<div class="product-cell" (click)="NavigateToDetails()">
+    <!--<a [routerLink]="['/product', product._id]">{{product.name}}</a>-->
+    {{product.name}}
     <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
     <!--<div *ngFor="let c of product.comments">
         <span>{{c.body}} ({{c.date}})</span>
@@ -12,7 +13,7 @@
         <button type="submit" (click)="addComment()">Add Comment</button>
     </form>-->
     <br/>
-    <app-star-rating [score]="this.starsCount" [forDisplay]="true"></app-star-rating>
+    <ngb-rating [(rate)]="product.starsCount" [readonly]="true"></ngb-rating>
     <br/>
-    <div *ngIf="adminGuard.canActivate()"><button (click)="deleteClickHandler()">Delete</button></div>   
+    <!--<div *ngIf="adminGuard.canActivate()"><button (click)="deleteClickHandler()">Delete</button></div>   -->
 </div>
