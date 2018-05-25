@@ -5,11 +5,12 @@
       <input type="text" [(ngModel)]="product.name" name="name" />
       <br/>
       <button type="submit">Update Product</button>
-      <span>
-        <button (click)="redirectToHome()">Back</button>
-      </span>
-      <button (click)="deleteClickHandler()">Delete Product</button>
     </form>
+    <span>
+      <button (click)="redirectToHome()">Back</button>
+    </span>
+    <button (click)="deleteClickHandler()">Delete Product</button>
+
   </div>
   <div class="product-form-readonly" *ngIf="!adminGuard.canActivate()">
     <label>Name:</label>
@@ -33,9 +34,11 @@
       <b>Comments: </b>
     </p>
     <div *ngFor="let c of product.comments">
-      <span>{{c.body}} ({{c.date| timeAgo}})</span>
-      <span>
-        <span class="glyphicon glyphicon-remove-circle" (click)="removeCommentHandler(c)" *ngIf="loggedInGuard.canActivate()"></span>
+      <span class="comment-body">{{c.body}}</span>
+      <span class="comment-date"> ({{c.date| timeAgo}})</span>
+      <span class="comment-user"> [{{c.userEmail}}]</span>
+      <span *ngIf="canDeleteComment(c.userEmail)">
+        <span class="glyphicon glyphicon-remove-circle" (click)="removeCommentHandler(c)" *ngIf="loggedInGuard.canActivate() "></span>
       </span>
     </div>
     <form *ngIf="loggedInGuard.canActivate()">

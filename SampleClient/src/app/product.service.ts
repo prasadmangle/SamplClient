@@ -37,18 +37,24 @@ export class ProductService {
   }
 
   removeProduct(id) {
+    console.log("Inside removeProduct :" + id)
     return this.http.delete('http://localhost:3000/api/products/' + id)
       .map(res => res.json());
   }
 
-  addComment(product, comment) {
+  addComment(product, comment, userEmail) {
     console.log(comment);
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
     console.log(product);
 
-    return this.http.post('http://localhost:3000/api/comments/' + comment, product, { headers: headers })
+    const request = {
+      "_id": product._id,
+      "userEmail": userEmail
+    }
+
+    return this.http.post('http://localhost:3000/api/comments/' + comment, request, { headers: headers })
       .map(res => res.json());
   }
 

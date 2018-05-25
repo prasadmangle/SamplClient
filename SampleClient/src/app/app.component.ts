@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Routes, RouterModule, Router} from "@angular/router";
 import { AuthService } from './auth.service';
+import { AdminGuard } from './admin.guard';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { AuthService } from './auth.service';
 })
 export class AppComponent {
   title = 'app';
-  constructor(private router : Router, public authService: AuthService)
+  constructor(private router : Router, public authService: AuthService, private adminGuard: AdminGuard)
   {
     
   }

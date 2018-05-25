@@ -6,9 +6,10 @@ export class Product{
         {
             _id : string;
             body: string;
+            userEmail : String;
         }
     ]
-    starRating:[
+    starRatings:[
         {
             _id : string;
             rating : number;

@@ -9,3 +9,11 @@
     border-color: black;
     
 }
+
+.comment-date{
+font-style: italic;
+}
+
+.comment-user{
+    font-style: italic;
+}

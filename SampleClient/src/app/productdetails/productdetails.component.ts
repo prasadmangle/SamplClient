@@ -33,10 +33,17 @@ export class ProductdetailsComponent implements OnInit {
   ngOnInit() {
     this.productService.getOneProduct(this.id).subscribe(p => {
       this.product = p
-      if (this.product != null) {
-        if (this.product.starRatings != null) {
-          this.starsCount = this.product.starRatings.filter(x => x.userEmail === this.authService.getUser())[0].rating;
+      try {
+        if (this.product != null) {
+          if (this.product.starRatings != null) {
+            var firstRating = this.product.starRatings.filter(x => x.userEmail === this.authService.getUser())[0];
+            if (firstRating != null)
+              this.starsCount = firstRating.rating;
+          }
         }
+      }
+      catch (err) {
+        console.log(err);
       }
     }
     );
@@ -52,6 +59,14 @@ export class ProductdetailsComponent implements OnInit {
 
   }
 
+  canDeleteComment(userEmail) {
+    if (userEmail === this.authService.getUser() || this.authService.isAdmin()) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
   updateProduct() {
     this.productService.updateOneProduct(this.product).subscribe(p => {
       console.log("Product " + p.name + " updated sucessfully!!!");
@@ -60,7 +75,11 @@ export class ProductdetailsComponent implements OnInit {
   }
 
   deleteClickHandler() {
-    this.productService.removeProduct(this.product._id);
+    this.productService.removeProduct(this.product._id)
+      .subscribe(data => {
+        console.log("Item deleted " + data._id);
+        this.router.navigate(['/admin']);
+      });
   }
 
   removeCommentHandler(comment) {
@@ -74,7 +93,7 @@ export class ProductdetailsComponent implements OnInit {
 
   addComment() {
 
-    this.productService.addComment(this.product, this.comment)
+    this.productService.addComment(this.product, this.comment, this.authService.getUser())
       .subscribe(product => {
         //this.product.comments.push({ body: this.comment });
         this.product = product;

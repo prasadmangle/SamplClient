@@ -41,16 +41,6 @@ export class ProductComponent implements OnInit {
     console.log(res);
   }
 
-  addComment() {
-
-    this.productService.addComment(this.product, this.comment)
-      .subscribe(product => {
-        //this.product.comments.push({ body: this.comment });
-        this.product = product;
-        this.comment = "";
-      });
-
-  }
   NavigateToDetails() {
     this.router.navigate(['/product', this.product._id]);
   }
