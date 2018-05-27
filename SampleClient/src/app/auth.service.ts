@@ -11,10 +11,11 @@ export class AuthService {
 
   login(email: string, password: string): boolean {
 
-    var userObj = new User();
+    var userObj = {
 
-    userObj.email = email;
-    userObj.password = password;
+      "email": email,
+      "password": password
+    }
 
     this.userService.login(userObj).subscribe(tokenObject => {
       if (tokenObject.token) {
@@ -28,7 +29,7 @@ export class AuthService {
         console.log(err);
       })
 
-    return (localStorage.getItem('usertoken') == null);
+    return (localStorage.getItem('usertoken') === null);
 
 
   }

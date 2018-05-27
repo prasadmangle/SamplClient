@@ -2,8 +2,15 @@
   <form (submit)='addProduct'>
     <label>Product Name:</label>
     <input type="text" [(ngModel)]="name" name="name" (keydown.enter)="submit()" />
-    <br/><br/>
+    <br/>
+    <br/>
+    <div class="input-group">
+      <label>Image:</label>
+      <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+    </div>
+    <br/>
     <button type="submit" (click)="addProduct()">Add Product</button>
-    <br/><br/>
+    <br/>
+    <br/>
   </form>
 </div>

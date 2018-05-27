@@ -1,7 +1,7 @@
 <div class="product-cell" (click)="NavigateToDetails()">
     <!--<a [routerLink]="['/product', product._id]">{{product.name}}</a>-->
     {{product.name}}
-    <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+    <img src="http://localhost:3000/{{product.imagePath}}" class="img-responsive" style="width:100%" alt="Image">
     <!--<div *ngFor="let c of product.comments">
         <span>{{c.body}} ({{c.date}})</span>
         <span>

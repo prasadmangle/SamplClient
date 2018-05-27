@@ -24,6 +24,7 @@ import { UserService } from './user.service';
 import { AdminGuard } from './admin.guard';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
 
 
 const routes: Routes = [
@@ -58,7 +59,8 @@ const routes: Routes = [
     StarRatingComponent,
     RegisterComponent,
     LoginComponent,
-    TimeAgoPipe
+    TimeAgoPipe,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,
